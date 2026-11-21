@@ -1,7 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
-import { nav } from "../content";
+import { nav, pageLinks } from "../content";
 import Icon from "./Icon";
 
 type Theme = "auto" | "light" | "dark";
@@ -9,7 +10,7 @@ const order: Theme[] = ["auto", "light", "dark"];
 const themeLabel = { auto: "Automatic", light: "Light", dark: "Dark" };
 const themeIcon = { auto: "auto", light: "sun", dark: "moon" } as const;
 
-export default function Header() {
+export default function Header({ home = false }: { home?: boolean } = {}) {
   const [theme, setTheme] = useState<Theme>("auto");
   const [open, setOpen] = useState(false);
 
@@ -40,18 +41,23 @@ export default function Header() {
   return (
     <header className="topbar">
       <div className="wrap topbar-row">
-        <a className="brand" href="#top" aria-label="Bioinformatics Hackathon 2026, top of page">
+        <Link className="brand" href={home ? "/" : "#top"} aria-label="Bioinformatics Hackathon 2026, home">
           <span className="brand-mark" aria-hidden="true" />
           <span className="brand-text">
             Bioinformatics Hackathon <span className="brand-year">2026</span>
           </span>
-        </a>
+        </Link>
 
         <nav className="topnav" aria-label="Sections">
           {nav.map((n) => (
-            <a key={n.href} href={n.href}>
+            <Link key={n.href} href={home ? `/${n.href}` : n.href}>
               {n.label}
-            </a>
+            </Link>
+          ))}
+          {pageLinks.map((n) => (
+            <Link key={n.href} className="topnav-page" href={n.href}>
+              {n.label}
+            </Link>
           ))}
         </nav>
 
@@ -81,9 +87,14 @@ export default function Header() {
       {open && (
         <nav id="mobile-nav" className="mobile-nav" aria-label="Sections">
           {nav.map((n) => (
-            <a key={n.href} href={n.href} onClick={() => setOpen(false)}>
+            <Link key={n.href} href={home ? `/${n.href}` : n.href} onClick={() => setOpen(false)}>
               {n.label}
-            </a>
+            </Link>
+          ))}
+          {pageLinks.map((n) => (
+            <Link key={n.href} href={n.href} onClick={() => setOpen(false)}>
+              {n.label}
+            </Link>
           ))}
         </nav>
       )}

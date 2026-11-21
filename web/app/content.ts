@@ -6,9 +6,13 @@ export const nav = [
   { href: "#guide", label: "Tools guide" },
   { href: "#challenges", label: "Topics" },
   { href: "#presentation", label: "Final presentation" },
+  { href: "#evaluation", label: "Evaluation" },
   { href: "#toolbox", label: "Toolbox" },
   { href: "#faq", label: "FAQ" },
 ];
+
+/* Links to other pages, shown beside the section links in the nav. */
+export const pageLinks = [{ href: "/terms/", label: "Rules" }];
 
 export const facts = [
   { value: "11", label: "topics, one per team" },
@@ -314,6 +318,56 @@ export const mustReport = [
   "the tools, databases and external sources it used",
   "its key inputs and parameters",
 ];
+
+/* ---------- Evaluation ---------- */
+export type Criterion = { letter: string; icon: string; name: string; detail: string; weight: number };
+
+export const criteria: Criterion[] = [
+  {
+    letter: "A",
+    icon: "microscope",
+    name: "Relevance to the assigned topic · Scientific and technical validity · Feasibility and potential impact",
+    detail:
+      "The question sits inside the topic the team was assigned, the approach is scientifically and technically sound, and the work was achievable in the time available. Judges also weigh what the result would be worth if it held up.",
+    weight: 35,
+  },
+  {
+    letter: "B",
+    icon: "sparkle",
+    name: "Innovation and originality",
+    detail:
+      "The team found its own angle rather than restating the indicative question, and can say what is new about the way it approached the problem.",
+    weight: 25,
+  },
+  {
+    letter: "C",
+    icon: "route",
+    name: "Sound and meaningful use of AI tools · Quality and documentation of the open-source code produced",
+    detail:
+      "Confidence scores are read correctly and the conclusions respect them. Tools, inputs and parameters are documented, and the notebook in the team's public repository runs for someone else.",
+    weight: 20,
+  },
+  {
+    letter: "D",
+    icon: "slides",
+    name: "Quality of the presentation and documentation of the solution",
+    detail:
+      "Ten minutes that take the audience from the problem to the result, with figures that can be read without the speaker and a plain account of what was not done.",
+    weight: 20,
+  },
+];
+
+export const evaluationRules = [
+  "Each criterion is scored from 0 to 10; the final score is the weighted sum.",
+  "Where there are several judges, a team's score is the average of their weighted scores.",
+  "In the event of a tie, the higher score on criterion A ranks first; if the tie remains, criterion D decides.",
+  "Objections are heard on procedural error only. Decisions of scientific judgement are final.",
+];
+
+export const evaluationNote = {
+  title: "A null result, argued well, scores",
+  body: "If the prediction was inconclusive, the structures were too uncertain to support the claim, or the method turned out to be the wrong one, say so and show the evidence. That is a finding. Judges mark it above a confident conclusion the data do not carry — and over-claiming is the fastest way to lose points on criteria A and C.",
+};
 
 /* ---------- Toolbox ---------- */
 export type Kind = "AI tool" | "Tool" | "Database";

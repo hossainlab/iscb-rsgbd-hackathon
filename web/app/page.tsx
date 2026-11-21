@@ -1,14 +1,29 @@
+import Link from "next/link";
 import Header from "./components/Header";
 import Icon, { type IconName } from "./components/Icon";
 import Faq from "./components/Faq";
 import StepGuide from "./components/StepGuide";
 import Toolbox from "./components/Toolbox";
-import { REPO_URL, facts, licences, mustReport, nav, talk, topics, topicsNote } from "./content";
+import {
+  REPO_URL,
+  criteria,
+  evaluationNote,
+  evaluationRules,
+  facts,
+  licences,
+  mustReport,
+  nav,
+  pageLinks,
+  talk,
+  topics,
+  topicsNote,
+} from "./content";
 
 const navIcon: Record<string, IconName> = {
   "#guide": "route",
   "#challenges": "grid",
   "#presentation": "slides",
+  "#evaluation": "scale",
   "#toolbox": "tools",
   "#faq": "help",
 };
@@ -107,7 +122,8 @@ export default function Page() {
             <h1>Preparation resources</h1>
             <p className="lede">
               Everything your team needs to prepare: a hands-on guide to computational biology tools, the eleven
-              topics, the structure of the final presentation, the toolbox and all the frequently asked questions.
+              topics, the structure of the final presentation, how teams are judged, the toolbox and all the
+              frequently asked questions.
             </p>
 
             <dl className="facts">
@@ -253,8 +269,54 @@ export default function Page() {
           </div>
         </section>
 
+        {/* Evaluation */}
+        <section className="section alt" id="evaluation">
+          <div className="wrap">
+            <SectionHead
+              icon="scale"
+              eyebrow="Evaluation"
+              title="Four criteria, 100 points"
+              lede="The same criteria apply to every team, whatever topic it was assigned. More than half the weight is on whether the science holds and whether the tools were used soundly — not on how polished the result looks."
+            />
+
+            <ol className="criteria">
+              {criteria.map((c) => (
+                <li key={c.letter}>
+                  <div className="crit-head">
+                    <span className="crit-letter">{c.letter}</span>
+                    <h3>{c.name}</h3>
+                    <span className="crit-weight">{c.weight}%</span>
+                  </div>
+                  <div className="meter" aria-hidden="true">
+                    <span style={{ width: `${(c.weight / 35) * 100}%` }} />
+                  </div>
+                  <p>{c.detail}</p>
+                </li>
+              ))}
+            </ol>
+
+            <div className="eval-foot">
+              <div className="eval-rules">
+                <h3 className="label">How the score is worked out</h3>
+                <ul className="ticks">
+                  {evaluationRules.map((r) => (
+                    <li key={r}>{r}</li>
+                  ))}
+                </ul>
+              </div>
+              <aside className="eval-note">
+                <span className="seal">
+                  <Icon name="flask" size={24} />
+                </span>
+                <h3>{evaluationNote.title}</h3>
+                <p>{evaluationNote.body}</p>
+              </aside>
+            </div>
+          </div>
+        </section>
+
         {/* Toolbox */}
-        <section className="section alt" id="toolbox">
+        <section className="section" id="toolbox">
           <div className="wrap">
             <SectionHead
               icon="tools"
@@ -278,7 +340,7 @@ export default function Page() {
         </section>
 
         {/* FAQ */}
-        <section className="section" id="faq">
+        <section className="section alt" id="faq">
           <div className="wrap">
             <Faq />
           </div>
@@ -301,6 +363,11 @@ export default function Page() {
               <a key={n.href} href={n.href}>
                 {n.label}
               </a>
+            ))}
+            {pageLinks.map((n) => (
+              <Link key={n.href} href={n.href}>
+                {n.label}
+              </Link>
             ))}
             <a href={REPO_URL} target="_blank" rel="noopener noreferrer">
               GitHub repository<span className="sr-only"> (opens in a new tab)</span>

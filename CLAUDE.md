@@ -34,8 +34,8 @@ Architecture: a single route.
 
 - `app/content.ts` — all page copy and data (the seven-step guide, the four challenge domains, the final presentation, the toolbox, the FAQ). Edit text here, not in components. The eleven challenges are placeholders in `domains[]`: give a challenge a `title` (and optional `summary`) and it stops rendering as "Challenge statement to come".
 - `app/page.tsx` — server component that lays out the sections (hero, guide, challenges by domain, final presentation, toolbox, FAQ, footer with the "Designed and developed by Md. Jubayer Hossain" credit).
-- `app/components/` — client components for the interactive parts: `Header` (theme toggle, mobile menu), `StepGuide` (seven-step stepper), `Toolbox` (collapsible "more tools" block with a numbered stage strip), `Faq` (search, category tabs, grouped accordions); `Icon` is a small inline SVG set, and every step, tool, stage and FAQ entry names one of its keys.
-- `app/globals.css` — plain CSS, no framework. Colour tokens are defined on `:root` and repeated for dark mode (media query and `[data-theme="dark"]`); change both when changing a colour. The `--plddt-*` tokens are the AlphaFold confidence-band colours and are deliberately the same in both themes.
+- `app/components/` — client components for the interactive parts: `Header` (mobile menu), `StepGuide` (seven-step stepper), `Toolbox` (collapsible "more tools" block with a numbered stage strip), `Faq` (search, category tabs, grouped accordions); `Icon` is a small inline SVG set, and every step, tool, stage and FAQ entry names one of its keys.
+- `app/globals.css` — plain CSS, no framework. The site is light-only: colour tokens live on `:root`, there is no dark variant and no theme switcher. The `--plddt-*` tokens are the AlphaFold confidence-band colours.
 
 The site follows the structure of https://biohackathon.pkm.gov.gr/en/resources/ (tools guide, final presentation, toolbox by analysis stage) with content written for this hackathon.
 

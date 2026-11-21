@@ -5,19 +5,8 @@ import { useEffect, useState } from "react";
 import { nav, pageLinks } from "../content";
 import Icon from "./Icon";
 
-type Theme = "auto" | "light" | "dark";
-const order: Theme[] = ["auto", "light", "dark"];
-const themeLabel = { auto: "Automatic", light: "Light", dark: "Dark" };
-const themeIcon = { auto: "auto", light: "sun", dark: "moon" } as const;
-
 export default function Header({ home = false }: { home?: boolean } = {}) {
-  const [theme, setTheme] = useState<Theme>("auto");
   const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    const saved = document.documentElement.dataset.theme;
-    if (saved === "light" || saved === "dark") setTheme(saved);
-  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -25,18 +14,6 @@ export default function Header({ home = false }: { home?: boolean } = {}) {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
-
-  function cycleTheme() {
-    const next = order[(order.indexOf(theme) + 1) % order.length];
-    setTheme(next);
-    const root = document.documentElement;
-    if (next === "auto") delete root.dataset.theme;
-    else root.dataset.theme = next;
-    try {
-      if (next === "auto") localStorage.removeItem("theme");
-      else localStorage.setItem("theme", next);
-    } catch {}
-  }
 
   return (
     <header className="topbar">
@@ -62,15 +39,6 @@ export default function Header({ home = false }: { home?: boolean } = {}) {
               {n.short}
             </Link>
           ))}
-          <button
-            className="icon-btn"
-            type="button"
-            onClick={cycleTheme}
-            title={`Theme: ${themeLabel[theme]}`}
-            aria-label={`Theme: ${themeLabel[theme]}. Change theme`}
-          >
-            <Icon name={themeIcon[theme]} />
-          </button>
           <button
             className="icon-btn menu-btn"
             type="button"

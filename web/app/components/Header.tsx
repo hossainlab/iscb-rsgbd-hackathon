@@ -58,8 +58,8 @@ export default function Header({ home = false }: { home?: boolean } = {}) {
 
         <div className="topbar-actions">
           {pageLinks.map((n) => (
-            <Link key={n.href} className="topnav-page" href={n.href}>
-              {n.label}
+            <Link key={n.href} className="topnav-page" href={n.href} aria-label={n.label} title={n.label}>
+              {n.short}
             </Link>
           ))}
           <button

@@ -12,7 +12,7 @@ export const nav = [
 ];
 
 /* Links to other pages, shown beside the section links in the nav. */
-export const pageLinks = [{ href: "/terms/", label: "Rules" }];
+export const pageLinks = [{ href: "/terms/", label: "Terms of participation", short: "Terms" }];
 
 export const facts = [
   { value: "11", label: "topics, one per team" },

@@ -244,9 +244,23 @@ button {
   color: var(--on-variant);
   text-decoration: none;
 }
+/* Sits beside the theme button, so it stays visible when the section nav collapses. */
 .topnav-page {
-  margin-left: 6px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 6px 16px;
+  margin-right: 4px;
   border: 1px solid var(--outline-variant);
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.topnav-page:hover {
+  background: var(--surface-high);
+  border-color: var(--outline);
 }
 .topnav a:hover {
   background: var(--surface-high);
@@ -285,7 +299,7 @@ button {
     display: none;
   }
 }
-@media (max-width: 1040px) {
+@media (max-width: 900px) {
   .topnav {
     display: none;
   }

@@ -3,9 +3,9 @@
 export const REPO_URL = "https://github.com/hossainlab/iscb-rsgbd-hackathon";
 
 export const nav = [
-  { href: "#guide", label: "Tools guide" },
+  { href: "#guide", label: "Guide" },
   { href: "#challenges", label: "Topics" },
-  { href: "#presentation", label: "Final presentation" },
+  { href: "#presentation", label: "Presentation" },
   { href: "#evaluation", label: "Evaluation" },
   { href: "#toolbox", label: "Toolbox" },
   { href: "#faq", label: "FAQ" },

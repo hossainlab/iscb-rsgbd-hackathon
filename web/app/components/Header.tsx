@@ -54,14 +54,14 @@ export default function Header({ home = false }: { home?: boolean } = {}) {
               {n.label}
             </Link>
           ))}
+        </nav>
+
+        <div className="topbar-actions">
           {pageLinks.map((n) => (
             <Link key={n.href} className="topnav-page" href={n.href}>
               {n.label}
             </Link>
           ))}
-        </nav>
-
-        <div className="topbar-actions">
           <button
             className="icon-btn"
             type="button"
@@ -88,11 +88,6 @@ export default function Header({ home = false }: { home?: boolean } = {}) {
         <nav id="mobile-nav" className="mobile-nav" aria-label="Sections">
           {nav.map((n) => (
             <Link key={n.href} href={home ? `/${n.href}` : n.href} onClick={() => setOpen(false)}>
-              {n.label}
-            </Link>
-          ))}
-          {pageLinks.map((n) => (
-            <Link key={n.href} href={n.href} onClick={() => setOpen(false)}>
               {n.label}
             </Link>
           ))}
